@@ -7,7 +7,7 @@ import 'https://unpkg.com/web3@latest/dist/web3.min.js';
 
 function App() {
   const [addressWallet, setAddressWallet] = useState();
-  const [bageType, setBageType] = useState();
+  const [bageType, setBageType] = useState(1);
   const [des, setDes] = useState('');
   const SC_ADDRESS = '0xdBFE5B089CD9Ff7CE27F674D7B4Ab91018cc7895';
   const web3 = new Web3(Web3.givenProvider || 'ws://localhost:8545');
@@ -16,7 +16,7 @@ function App() {
 
   const Login = async () => {
     const address = await web3.eth.requestAccounts();
-    console.log(address);
+
     setAddressWallet(address[0]);
   };
 
@@ -32,7 +32,17 @@ function App() {
         bageType,
       )
       .send({ from: addressWallet });
-    console.log(mint);
+
+    alert(
+      `Your account:
+     ${mint.events.ticketGenerated.returnValues[2]} `
+     + `\n${
+       `Your bageType : ${mint.events.ticketGenerated.returnValues[3]}`}`
+       + `\n${
+         `Your bageType : ${mint.events.ticketGenerated.returnValues[1]}`}`,
+      // 'Your Description :',
+      // mint.events.ticketGenerated.returnValues[1],
+    );
   };
 
   const handleChangeType = (event) => {
@@ -41,7 +51,6 @@ function App() {
   const handleDes = (event) => {
     setDes(event.target.value);
   };
-  console.log(addressWallet, bageType, des);
 
   return (
     <div className="App">
