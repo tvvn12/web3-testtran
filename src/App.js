@@ -39,7 +39,7 @@ function App() {
      + `\n${
        `Your bageType : ${mint.events.ticketGenerated.returnValues[3]}`}`
        + `\n${
-         `Your bageType : ${mint.events.ticketGenerated.returnValues[1]}`}`,
+         `Your Description : ${mint.events.ticketGenerated.returnValues[1]}`}`,
       // 'Your Description :',
       // mint.events.ticketGenerated.returnValues[1],
     );
